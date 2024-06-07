@@ -30,3 +30,15 @@ Route::get('produits/{id}', [ProduitController::class, 'show'])->name('produits.
 
 // Route pour afficher la liste des catégories
 Route::get('categories', [CategorieController::class, 'index'])->name('categories.index');
+
+// Route pour afficher le formulaire de création d'une nouvelle catégorie
+Route::get('categories/create', [CategorieController::class, 'create'])->name('categories.create');
+
+// Route pour enregistrer une nouvelle catégorie
+Route::post('categories', [CategorieController::class, 'store'])->name('categories.store');
+
+// Route pour afficher le formulaire d'édition d'une catégorie
+Route::get('categories/{categorie}/edit', [CategorieController::class, 'edit'])->name('categories.edit');
+
+// Route pour mettre à jour une catégorie existante
+Route::put('categories/{categorie}', [CategorieController::class, 'update'])->name('categories.update');
