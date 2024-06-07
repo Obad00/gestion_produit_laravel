@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\CategorieController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,4 +25,8 @@ Route::put('produits/{id}', [ProduitController::class, 'update'])->name('produit
 Route::delete('produits/{id}', [ProduitController::class, 'destroy'])->name('produits.destroy');
 
 //Affichage details produits
-Route::get('produits/{id}', [ProduitController::class, 'show'])->name('produits.show'); // Route pour afficher les détails du produit
+Route::get('produits/{id}', [ProduitController::class, 'show'])->name('produits.show'); 
+
+
+// Route pour afficher la liste des catégories
+Route::get('categories', [CategorieController::class, 'index'])->name('categories.index');

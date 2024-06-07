@@ -9,8 +9,9 @@
         <div class="card-body">
             <h5 class="card-title">{{ $produit->nom }}</h5>
             <p class="card-text">{{ $produit->description }}</p>
-            <p class="card-text"><strong>Prix :</strong> {{ $produit->prix }} €</p>
-            <p class="card-text"><strong>Catégorie :</strong> {{ $produit->categorie->libelle }}</p> <!-- Assuming you have a relationship set up with the category -->
+            <p class="card-text"><strong>Prix :</strong> {{ $produit->prix }} FCFA</p>
+            <p class="card-text"><strong>Catégorie :</strong> {{ $produit->categorie->libelle }}</p> 
+            <p class="card-text"><strong>Description de la Catégorie :</strong> {{ $produit->categorie->description }}</p>
         </div>
     </div>
 </div>

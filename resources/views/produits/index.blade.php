@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $produit->nom }}</h5>
                     <p class="card-text">{{ Str::limit($produit->description , 100);}}</p>
-                    <p class="card-text"><strong>Prix :</strong> {{ $produit->prix }} €</p>
+                    <p class="card-text"><strong>Prix :</strong> {{ $produit->prix }} FCFA</p>
                     {{-- <p class="card-text"><strong>Stock :</strong> {{ $produit->stock }}</p> --}}
                     <a href="{{ url('produits/' . $produit->id) }}" class="btn btn-primary">Voir les détails</a>
                     {{-- @auth --}}
