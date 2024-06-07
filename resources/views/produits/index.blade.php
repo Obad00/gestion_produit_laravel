@@ -26,14 +26,14 @@
                     <p class="card-text"><strong>Prix :</strong> {{ $produit->prix }} €</p>
                     {{-- <p class="card-text"><strong>Stock :</strong> {{ $produit->stock }}</p> --}}
                     <a href="{{ url('produits/' . $produit->id) }}" class="btn btn-primary">Voir les détails</a>
-                    @auth
+                    {{-- @auth --}}
                     <a href="{{ url('produits/' . $produit->id . '/edit') }}" class="btn btn-warning">Modifier</a>
                     <form action="{{ url('produits/' . $produit->id) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
-                    @endauth
+                    {{-- @endauth --}}
                 </div>
             </div>
         </div>

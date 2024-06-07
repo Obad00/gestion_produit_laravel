@@ -14,3 +14,7 @@ Route::get('produits', [ProduitController::class, 'index'])->name('produits.inde
 //C'est la route qui mène vers le formulaire d'ajout d'un produit
 Route::get('produits/create', [ProduitController::class, 'create']);
 Route::post('produits', [ProduitController::class, 'store']);
+
+//les routes pour afficher et modifier un produit
+Route::get('produits/{id}/edit', [ProduitController::class, 'edit']);
+Route::put('produits/{id}', [ProduitController::class, 'update'])->name('produits.update');
