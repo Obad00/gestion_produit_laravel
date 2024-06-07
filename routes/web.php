@@ -42,3 +42,10 @@ Route::get('categories/{categorie}/edit', [CategorieController::class, 'edit'])-
 
 // Route pour mettre à jour une catégorie existante
 Route::put('categories/{categorie}', [CategorieController::class, 'update'])->name('categories.update');
+
+// Route pour supprimer une catégorie
+Route::delete('categories/{categorie}', [CategorieController::class, 'destroy'])->name('categories.destroy');
+
+// Route pour afficher les détails d'une catégorie
+Route::get('categories/{categorie}', [CategorieController::class, 'show'])->name('categories.show');
+

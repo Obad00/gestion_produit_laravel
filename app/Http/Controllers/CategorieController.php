@@ -51,4 +51,16 @@ class CategorieController extends Controller
         return redirect()->route('categories.index')->with('status', 'Catégorie mise à jour avec succès.');
     }
 
+     public function destroy(Categorie $categorie)
+    {
+        $categorie->delete();
+
+        return redirect()->route('categories.index')->with('status', 'Catégorie supprimée avec succès.');
+    }
+
+    public function show(Categorie $categorie)
+    {
+        return view('categories.show', compact('categorie'));
+    }
+
 }
