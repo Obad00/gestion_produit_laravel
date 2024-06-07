@@ -31,8 +31,8 @@
                     <form action="{{ url('produits/' . $produit->id) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                    </form>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">Supprimer</button>
+                    </form>                    
                     {{-- @endauth --}}
                 </div>
             </div>

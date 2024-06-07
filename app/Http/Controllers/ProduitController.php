@@ -28,7 +28,6 @@ class ProduitController extends Controller
             'description' => 'nullable|string',
             'prix' => 'required|numeric',
             'categorie_id' => 'required|exists:categories,id',
-            'stock' => 'required|integer',
             'image_url' => 'nullable|url',
         ]);
 
@@ -64,5 +63,19 @@ class ProduitController extends Controller
         return redirect()->route('produits.index');
     }
 
-    
+    //Fonction pour supprimer un produit
+    public function destroy($id)
+{
+    $produit = Produit::findOrFail($id);
+    $produit->delete();
+
+    return redirect()->route('produits.index')->with('status', 'Le produit a été supprimé avec succès.');
+}
+
+   //Pour afficher les details de la vue
+   public function show($id)
+    {
+        $produit = Produit::findOrFail($id);
+        return view('produits.show', compact('produit'));
+    }
 }

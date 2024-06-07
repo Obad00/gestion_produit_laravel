@@ -18,3 +18,9 @@ Route::post('produits', [ProduitController::class, 'store']);
 //les routes pour afficher et modifier un produit
 Route::get('produits/{id}/edit', [ProduitController::class, 'edit']);
 Route::put('produits/{id}', [ProduitController::class, 'update'])->name('produits.update');
+
+//Cette rote c'est pour la suppression d'un produit
+Route::delete('produits/{id}', [ProduitController::class, 'destroy'])->name('produits.destroy');
+
+//Affichage details produits
+Route::get('produits/{id}', [ProduitController::class, 'show'])->name('produits.show'); // Route pour afficher les détails du produit
