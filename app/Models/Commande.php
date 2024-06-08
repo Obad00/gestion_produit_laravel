@@ -9,9 +9,19 @@ class Commande extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['produit_ids', 'nom_client', 'adresse_client', 'telephone_client', 'statut'];
+    protected $fillable = ['reference', 'nom_client', 'adresse_client', 'telephone_client', 'statut', 'montant'];
     
-    protected $casts = [
-        'produit_ids' => 'array'
-    ];
+    public function produits()
+    {
+        return $this->belongsToMany(Produit::class)->withPivot('quantite');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->reference = 'CMD-' . strtoupper(uniqid());
+        });
+    }
 }

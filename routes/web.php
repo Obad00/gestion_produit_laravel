@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\CategorieController;
-
+use App\Http\Controllers\PanierController;
+use App\Http\Controllers\CommandeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,4 +49,16 @@ Route::delete('categories/{categorie}', [CategorieController::class, 'destroy'])
 
 // Route pour afficher les détails d'une catégorie
 Route::get('categories/{categorie}', [CategorieController::class, 'show'])->name('categories.show');
+
+//Les route por nous permettre que le client puisse ajouter d'abord au panier
+Route::post('/ajouter-au-panier/{produit}', [PanierController::class, 'ajouterAuPanier'])->name('ajouter-au-panier');
+
+Route::get('/paniers', [PanierController::class, 'afficherPanier'])->name('paniers.index');
+
+
+Route::post('/commande', [CommandeController::class, 'store'])->name('commande.store');
+Route::get('/confirmation', function () {
+    return view('paniers.confirmation');
+})->name('paniers.confirmation');
+
 

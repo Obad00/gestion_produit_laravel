@@ -1,7 +1,14 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <h1>Mes produits</h1>
 {{-- @extends('layouts.app') --}}
 
 {{-- @section('content') --}}
+<a href="{{ route('paniers.index') }}">
+    <i class="fa fa-shopping-cart"></i> <!-- Utilisation de Font Awesome -->
+    <!-- <img src="chemin_vers_icone_panier.png" alt="Panier"> --> <!-- Icône personnalisée -->
+</a>
+
 <div class="container">
     <h1 class="my-4">Liste des Produits</h1>
 
@@ -22,6 +29,7 @@
                 <img src="{{ $produit->image_url ?? 'https://via.placeholder.com/150' }}" class="card-img-top" alt="{{ $produit->nom }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $produit->nom }}</h5>
+                    <p class="card-text">{{ $produit->reference }}</p>
                     <p class="card-text">{{ Str::limit($produit->description , 100);}}</p>
                     <p class="card-text"><strong>Prix :</strong> {{ $produit->prix }} FCFA</p>
                     {{-- <p class="card-text"><strong>Stock :</strong> {{ $produit->stock }}</p> --}}
@@ -34,6 +42,10 @@
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">Supprimer</button>
                     </form>                    
                     {{-- @endauth --}}
+                    <form action="{{ route('ajouter-au-panier', ['produit' => $produit->id]) }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+            </form>
                 </div>
             </div>
         </div>
