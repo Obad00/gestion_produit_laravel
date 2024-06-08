@@ -10,10 +10,9 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', [ProduitController::class ,'vue_clients']);
 
-// Route::middleware([EnsureTokenIsValid::class])->group(function () {
+Route::middleware([EnsureTokenIsValid::class])->group(function () {
 
-// });
-//Cette route c'est pour permettre d'acceder à l'ensemble des produits
+    //Cette route c'est pour permettre d'acceder à l'ensemble des produits
 Route::get('produits', [ProduitController::class, 'index'])->name('produits.index');
 
 //C'est la route qui mène vers le formulaire d'ajout d'un produit
@@ -26,6 +25,10 @@ Route::put('produits/{id}', [ProduitController::class, 'update'])->name('produit
 
 //Cette route c'est pour la suppression d'un produit
 Route::delete('produits/{id}', [ProduitController::class, 'destroy'])->name('produits.destroy');
+
+// Route pour afficher la liste des catégories
+Route::get('categories', [CategorieController::class, 'index'])->name('categories.index');
+
 
 // Route pour afficher le formulaire de création d'une nouvelle catégorie
 Route::get('categories/create', [CategorieController::class, 'create'])->name('categories.create');
@@ -47,15 +50,15 @@ Route::get('admin/commandes', [CommandeController::class, 'index'])->name('comma
 
 
 
+});
+
+
 
 //Affichage details produits
 Route::get('produits/{id}', [ProduitController::class, 'show'])->name('produits.show'); 
 
 // Route pour afficher les détails d'une catégorie
 Route::get('categories/{categorie}', [CategorieController::class, 'show'])->name('categories.show');
-
-// Route pour afficher la liste des catégories
-Route::get('categories', [CategorieController::class, 'index'])->name('categories.index');
 
 //Les route por nous permettre que le client puisse ajouter d'abord au panier
 Route::post('/ajouter-au-panier/{produit}', [PanierController::class, 'ajouterAuPanier'])->name('ajouter-au-panier');
@@ -71,7 +74,7 @@ Route::get('/confirmation', function () {
     return view('paniers.confirmation');
 })->name('paniers.confirmation');
 
-//Ces routes vont nou permettre de gerer l'authentification et le traitement des donnée de l'utilisateur
+//Ces routes vont nous permettre de gerer l'authentification et le traitement des donnée de l'utilisateur
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login'); 
 Route::post('/login', [AuthController::class, 'dologin']); 
 
