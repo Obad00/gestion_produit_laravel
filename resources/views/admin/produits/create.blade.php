@@ -1,6 +1,4 @@
-{{-- @extends('layouts.app') --}}
 
-{{-- @section('content') --}}
 <div class="container">
     <h1 class="my-4">Ajouter un Produit</h1>
 
@@ -37,10 +35,6 @@
                 @endforeach
             </select>
         </div>
-        {{-- <div class="form-group">
-            <label for="stock">Stock</label>
-            <input type="number" class="form-control" id="stock" name="stock" value="{{ old('stock') }}" required>
-        </div> --}}
         <div class="form-group">
             <label for="image_url">URL de l'image</label>
             <input type="url" class="form-control" id="image_url" name="image_url" value="{{ old('image_url') }}">
@@ -48,4 +42,4 @@
         <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
 </div>
-{{-- @endsection --}}
+

@@ -1,13 +1,25 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<h1>Mes produits</h1>
-{{-- @extends('layouts.app') --}}
-
-{{-- @section('content') --}}
-<a href="{{ route('paniers.index') }}">
-    <i class="fa fa-shopping-cart"></i> <!-- Utilisation de Font Awesome -->
-    <!-- <img src="chemin_vers_icone_panier.png" alt="Panier"> --> <!-- Icône personnalisée -->
-</a>
+<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    @auth
+        <div class="dropdown">
+            <button class="btn btn dropdown-toggle user-name" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ auth()->user()->name }}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                <li>
+                    <form action="{{ route('logout') }}" method="POST" class="dropdown-item">
+                        @csrf
+                        <button type="submit" class="btn btn-link">Déconnexion</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    @endauth
+</div>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('commandes.index') }}">Voir les Commandes</a>
+</li>
 
 <div class="container">
     <h1 class="my-4">Liste des Produits</h1>
@@ -34,17 +46,16 @@
                     <p class="card-text"><strong>Prix :</strong> {{ $produit->prix }} FCFA</p>
                     {{-- <p class="card-text"><strong>Stock :</strong> {{ $produit->stock }}</p> --}}
                     <a href="{{ url('produits/' . $produit->id) }}" class="btn btn-primary">Voir les détails</a>
-                    {{-- @auth --}}
+                    @auth
                     <a href="{{ url('produits/' . $produit->id . '/edit') }}" class="btn btn-warning">Modifier</a>
                     <form action="{{ url('produits/' . $produit->id) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">Supprimer</button>
                     </form>                    
-                    {{-- @endauth --}}
+                    @endauth
                     <form action="{{ route('ajouter-au-panier', ['produit' => $produit->id]) }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-primary">Ajouter au panier</button>
             </form>
                 </div>
             </div>
@@ -52,4 +63,4 @@
         @endforeach
     </div>
 </div>
-{{-- @endsection --}}
+

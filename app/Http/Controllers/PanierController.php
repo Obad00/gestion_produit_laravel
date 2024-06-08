@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produit;
+use App\Models\Commande;
+use Illuminate\Support\Facades\Session;
 
 class PanierController extends Controller
 {

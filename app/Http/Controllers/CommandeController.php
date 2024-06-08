@@ -53,4 +53,13 @@ class CommandeController extends Controller
         // Rediriger avec un message de succès
         return redirect()->route('paniers.confirmation')->with('success', 'Votre commande a été passée avec succès!');
     }
+
+    public function index()
+    {
+        // Récupérer toutes les commandes
+        $commandes = Commande::with('produits')->get();
+
+        // Retourner la vue avec les commandes
+        return view('admin.commandes.index', compact('commandes'));
+    }
 }

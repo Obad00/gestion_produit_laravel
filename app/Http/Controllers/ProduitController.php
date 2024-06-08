@@ -4,21 +4,38 @@ namespace App\Http\Controllers;
 use App\Models\Produit;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class ProduitController extends Controller
 {
+
+    public function  vue_clients(){
+
+          //Cette ligne de code nous a permis de créer un utilisateur
+
+        // User::create([
+        //     'name' => 'Adama Dabo',
+        //     'email' => 'Adama@gmail.com',
+        //     'password' => Hash::make('0000')
+        // ]); 
+
+        $produits= Produit::all();
+        return view('/clients/index', compact('produits'));
+    }
+
     //Cette fonction va nous permettre d'afficher les produits
     public function index()
     {
         $produits = Produit::all();
-        return view('produits.index', compact('produits'));
+        return view('admin/produits.index', compact('produits'));
     }
 
     //Ces fonctions affichent d'abord la vue pour créer un produit et la seconde pour faire le traitement
     public function create()
     {
         $categories = Categorie::all();
-        return view('produits.create', compact('categories'));
+        return view('admin/produits.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -43,7 +60,7 @@ class ProduitController extends Controller
     {
         $produit = Produit::findOrFail($id);
         $categories = Categorie::all();
-        return view('produits.edit', compact('produit', 'categories'));
+        return view('admin/produits.edit', compact('produit', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -76,6 +93,6 @@ class ProduitController extends Controller
    public function show($id)
     {
         $produit = Produit::findOrFail($id);
-        return view('produits.show', compact('produit'));
+        return view('admin/produits.show', compact('produit'));
     }
 }

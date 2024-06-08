@@ -12,13 +12,13 @@ class CategorieController extends Controller
     public function index()
     {
         $categories = Categorie::all();
-        return view('categories.index', compact('categories'));
+        return view('admin/categories.index', compact('categories'));
     }
 
 //Permet de faire la création et le traitement pour la création d'une categorie
     public function create()
     {
-        return view('categories.create');
+        return view('admin/categories.create');
     }
 
     public function store(Request $request)
@@ -36,7 +36,7 @@ class CategorieController extends Controller
     //Pour faire la modification d'une categorie
     public function edit(Categorie $categorie)
     {
-        return view('categories.edit', compact('categorie'));
+        return view('admin/categories.edit', compact('categorie'));
     }
 
     public function update(Request $request, Categorie $categorie)
@@ -60,7 +60,7 @@ class CategorieController extends Controller
 
     public function show(Categorie $categorie)
     {
-        return view('categories.show', compact('categorie'));
+        return view('admin/categories.show', compact('categorie'));
     }
 
 }
