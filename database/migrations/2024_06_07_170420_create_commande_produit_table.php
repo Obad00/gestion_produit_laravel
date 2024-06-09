@@ -15,7 +15,9 @@ class CreateCommandeProduitTable extends Migration
             $table->id();
             $table->unsignedBigInteger('commande_id');
             $table->unsignedBigInteger('produit_id');
-            $table->integer('quantite')->default(1); // Ajouter la colonne quantite dans ma table de pivot pour recuperer la quantite de produit recuperer
+
+            // Ajouter la colonne quantite dans ma table de pivot pour recuperer la quantite de produit 
+            $table->integer('quantite')->default(1); 
             $table->timestamps();
 
             $table->foreign('commande_id')->references('id')->on('commandes')->onDelete('cascade');
