@@ -52,6 +52,7 @@
             <img src="{{ $produit->image_url ?? 'https://via.placeholder.com/150' }}" class="card-img-top" alt="{{ $produit->nom }}">
             <div class="card-body">
                 <h5 class="card-title">{{ $produit->nom }}</h5>
+                <p class="card-text">{{ $produit->reference }}</p>
                 <p class="card-text">{{ $produit->description }}</p>
                 <p class="card-text"><strong>Prix :</strong> {{ $produit->prix }} FCFA</p>
                 <p class="card-text"><strong>Catégorie :</strong> {{ $produit->categorie->libelle }}</p> 
