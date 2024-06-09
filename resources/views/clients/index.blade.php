@@ -99,6 +99,16 @@
             height: 400px;
             object-fit: cover;
         }
+
+        .description {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+        .description.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -160,9 +170,11 @@
     </div>
 
     <!-- Description de la plateforme -->
-    <div class="description">
-        <h2>Bienvenue sur notre plateforme</h2>
-        <p>Découvrez une sélection unique de produits de qualité. Ajoutez vos articles préférés à votre panier et passez commande en toute simplicité.</p>
+    <div class="container">
+        <div class="description">
+            <h2>Bienvenue sur notre plateforme</h2>
+            <p>Découvrez une sélection unique de produits de qualité. Ajoutez vos articles préférés à votre panier et passez commande en toute simplicité.</p>
+        </div>
     </div>
 
     <div class="container">
@@ -232,5 +244,21 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+     <script>
+        window.addEventListener('load', function () {
+            const description = document.querySelector('.description');
+            description.classList.add('visible');
+            setTimeout(() => {
+                description.classList.remove('show-immediately');
+            }, 100); 
+            setInterval(() => {
+                description.classList.add('visible');
+                setTimeout(() => {
+                    description.classList.remove('visible');
+                }, 4000); 
+            }, 5000); 
+        });
+    </script>
 </body>
 </html>
