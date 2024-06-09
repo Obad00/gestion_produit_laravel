@@ -109,6 +109,36 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        .search-bar {
+           width: 300px; 
+           margin-bottom: 20px;
+           display: flex; 
+        }
+
+        .search-input {
+             flex: 1; 
+             padding: 10px;
+              font-size: 16px;
+             border: 1px solid #ccc;
+              border-radius: 5px;
+             outline: none;
+        }
+
+            .search-btn {
+            padding: 10px 20px;
+             background-color: #007bff;
+             color: #fff;
+             border: none;
+             border-radius: 5px;
+             cursor: pointer;
+              margin-left: 10px; 
+            }
+
+            .search-btn:hover {
+              background-color: #0056b3;
+            }
+
     </style>
 </head>
 <body>
@@ -177,7 +207,20 @@
         </div>
     </div>
 
+
+    
     <div class="container">
+
+        <div>
+            <form action="{{ route('recherche.produits') }}" method="GET" class="search-bar">
+                <input type="text" name="q" class="search-input" placeholder="Rechercher...">
+                <br><br>
+                <button type="submit" class="search-btn">Rechercher</button>
+            </form>
+            
+        </div>
+        
+
         <h1 class="my-4">Liste des Produits</h1>
 
         @if (session('status'))

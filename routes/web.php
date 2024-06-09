@@ -86,3 +86,7 @@ Route::post('/login', [AuthController::class, 'dologin']);
 
 //Cette route permet à l'utilisateur de se deconnecter
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+Route::get('/recherche-produits', 'ProduitController@rechercherProduits')->name('recherche.produits');
+

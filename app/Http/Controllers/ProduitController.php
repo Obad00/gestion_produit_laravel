@@ -101,4 +101,18 @@ class ProduitController extends Controller
         $produit = Produit::findOrFail($id);
         return view('clients.show', compact('produit'));
     }
+
+    public function rechercherProduits(Request $request)
+    {
+        // Récupérer le terme de recherche depuis la requête
+        $searchTerm = $request->input('q');
+
+        // Rechercher les produits correspondants au terme de recherche
+        $produits = Produit::where('nom', 'like', '%' . $searchTerm . '%')
+                           ->orWhere('description', 'like', '%' . $searchTerm . '%')
+                           ->paginate(4); // Paginer les résultats
+
+        // Retourner la vue avec les produits correspondants
+        return view('recherche_produits', compact('produits'));
+    }
 }
