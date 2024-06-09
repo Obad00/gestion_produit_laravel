@@ -116,7 +116,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('auth.login') }}">Se connecter</a>
+                        <a class="nav-link" href="{{ route('auth.login') }}">Administration</a>
                     </li>
                 </ul>
             </div>
