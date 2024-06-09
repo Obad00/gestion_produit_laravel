@@ -15,8 +15,12 @@ Route::middleware([EnsureTokenIsValid::class])->group(function () {
     //Cette route c'est pour permettre d'acceder à l'ensemble des produits
 Route::get('produits', [ProduitController::class, 'index'])->name('produits.index');
 
+//Affichage details produits
+Route::get('produits/{id}', [ProduitController::class, 'show'])->name('produits.show'); 
+
+
 //C'est la route qui mène vers le formulaire d'ajout d'un produit
-Route::get('produits/create', [ProduitController::class, 'create']);
+Route::get('admin/produits/create', [ProduitController::class, 'create'])->name('produits.create');
 Route::post('produits', [ProduitController::class, 'store']);
 
 //les routes pour afficher et modifier un produit
@@ -54,8 +58,10 @@ Route::get('admin/commandes', [CommandeController::class, 'index'])->name('comma
 
 
 
-//Affichage details produits
-Route::get('produits/{id}', [ProduitController::class, 'show'])->name('produits.show'); 
+
+//Affichage details produits pour les clients
+Route::get('clients/{id}', [ProduitController::class, 'showclient'])->name('clients.show'); 
+
 
 // Route pour afficher les détails d'une catégorie
 Route::get('categories/{categorie}', [CategorieController::class, 'show'])->name('categories.show');

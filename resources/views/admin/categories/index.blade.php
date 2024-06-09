@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Catégories</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -57,10 +58,35 @@
         form {
             display: inline;
         }
+        .icon-btn {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            margin: 2px;
+            font-size: 1.2rem;
+        }
+        .icon-btn-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+        .icon-btn-warning {
+            background-color: #ffc107;
+            color: black;
+        }
+        .icon-btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div>
+            <a href="produits" class="btn btn-link">Retour</a>
+        </div>
         <h1>Liste des Catégories</h1>
         <a href="{{ route('categories.create') }}" class="btn btn-primary">Créer une nouvelle catégorie</a>
         <table class="table table-bordered mt-3">
@@ -79,12 +105,12 @@
                         <td>{{ $categorie->libelle }}</td>
                         <td>{{ $categorie->description }}</td>
                         <td>
-                            <a href="{{ route('categories.show', $categorie) }}" class="btn btn-info">Voir</a>
-                            <a href="{{ route('categories.edit', $categorie) }}" class="btn btn-warning">Modifier</a>
-                            <form action="{{ route('categories.destroy', $categorie) }}" method="POST">
+                            <a href="{{ route('categories.show', $categorie) }}" class="icon-btn icon-btn-info" title="Voir"><i class="fas fa-eye"></i></a>
+                            <a href="{{ route('categories.edit', $categorie) }}" class="icon-btn icon-btn-warning" title="Modifier"><i class="fas fa-edit"></i></a>
+                            <form action="{{ route('categories.destroy', $categorie) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</button>
+                                <button type="submit" class="icon-btn icon-btn-danger" title="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')"><i class="fas fa-trash-alt"></i></button>
                             </form>
                         </td>
                     </tr>

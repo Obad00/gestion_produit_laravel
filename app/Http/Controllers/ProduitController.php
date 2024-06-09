@@ -95,4 +95,10 @@ class ProduitController extends Controller
         $produit = Produit::findOrFail($id);
         return view('admin/produits.show', compact('produit'));
     }
+
+    public function showclient($id)
+    {
+        $produit = Produit::findOrFail($id);
+        return view('clients.show', compact('produit'));
+    }
 }

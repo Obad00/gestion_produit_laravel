@@ -34,6 +34,11 @@
 </head>
 <body>
     <div class="container">
+
+        <div>
+            <a href="{{ route('produits.index') }}" class="btn btn-link">Retour</a>
+        </div>
+
         <h1 class="my-4">Modifier le Produit</h1>
 
         @if ($errors->any())

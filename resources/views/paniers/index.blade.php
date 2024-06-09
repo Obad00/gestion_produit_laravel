@@ -40,6 +40,10 @@
 </style>
 <br><br><br>
     <div class="container">
+        <div>
+            <a href="/" class="btn btn-link">Retour</a>
+        </div>
+        
         <h1>Contenu du Panier</h1>
 
         @if (count($panier) > 0)

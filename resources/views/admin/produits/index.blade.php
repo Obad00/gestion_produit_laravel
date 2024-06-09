@@ -58,11 +58,42 @@
         .card {
             margin-bottom: 2rem;
         }
+
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .icon-btn {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            margin: 2px;
+            font-size: 1.2rem;
+        }
+
+        .icon-btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .icon-btn-warning {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .icon-btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <div id="wrapper">
-       
         <div class="bg-dark" id="sidebar-wrapper">
             <div class="sidebar-heading">DIWAN</div>
             <div class="list-group list-group-flush">
@@ -73,12 +104,9 @@
                 <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Clients</a>
             </div>
         </div>
-       
-
-       
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <a href="{{ url('clients.index') }}" class="btn btn-primary">Aller à la page Clients</a>
+                <a href="/" class="btn btn-primary">Aller à la page Clients</a>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     @auth
                         <div class="dropdown">
@@ -97,20 +125,16 @@
                     @endauth
                 </div>
             </nav>
-
             <div class="container-fluid content">
                 <h1 class="my-4">Liste des Produits</h1>
-
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
                     </div>
                 @endif
-
                 @auth
-                <a href="{{ url('produits/create') }}" class="btn btn-primary mb-3">Ajouter un Produit</a>
+                <a href="{{ url('admin/produits/create') }}" class="btn btn-primary mb-3">Ajouter un Produit</a>
                 @endauth
-
                 <div class="row">
                     @foreach($produits as $produit)
                     <div class="col-md-4 mb-4">
@@ -121,14 +145,13 @@
                                 <p class="card-text">{{ $produit->reference }}</p>
                                 <p class="card-text">{{ Str::limit($produit->description , 100);}}</p>
                                 <p class="card-text"><strong>Prix :</strong> {{ $produit->prix }} FCFA</p>
-                                {{-- <p class="card-text"><strong>Stock :</strong> {{ $produit->stock }}</p> --}}
-                                <a href="{{ url('produits/' . $produit->id) }}" class="btn btn-primary">Voir les détails</a>
+                                <a href="{{ url('produits/' . $produit->id) }}" class="icon-btn icon-btn-primary" title="Voir les détails"><i class="fas fa-eye"></i></a>
                                 @auth
-                                <a href="{{ url('produits/' . $produit->id . '/edit') }}" class="btn btn-warning">Modifier</a>
+                                <a href="{{ url('produits/' . $produit->id . '/edit') }}" class="icon-btn icon-btn-warning" title="Modifier"><i class="fas fa-edit"></i></a>
                                 <form action="{{ url('produits/' . $produit->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">Supprimer</button>
+                                    <button type="submit" class="icon-btn icon-btn-danger" title="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')"><i class="fas fa-trash-alt"></i></button>
                                 </form>                    
                                 @endauth
                             </div>
@@ -138,12 +161,9 @@
                 </div>
             </div>
         </div>
-
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>

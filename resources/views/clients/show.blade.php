@@ -47,7 +47,7 @@
 <body>
     <div class="container">
         <div>
-            <a href="{{ route('produits.index') }}" class="btn btn-link">Retour</a>
+            <a href="/" class="btn btn-link">Retour</a>
         </div>
     
         <h1 class="my-4">{{ $produit->nom }}</h1>
