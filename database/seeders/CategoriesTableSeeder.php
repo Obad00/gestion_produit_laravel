@@ -11,47 +11,57 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $categories = [
-            [
-                'libelle' => 'Ordinateurs Portables',
-                'description' => 'Des ordinateurs portables pour tous vos besoins, qu\'ils soient professionnels ou personnels.'
-            ],
-            [
-                'libelle' => 'Smartphones',
-                'description' => 'Les derniers modèles de smartphones avec des fonctionnalités avancées.'
-            ],
-            [
-                'libelle' => 'Tablettes',
-                'description' => 'Des tablettes performantes pour le travail, les loisirs et l\'éducation.'
-            ],
-            [
-                'libelle' => 'Accessoires Informatiques',
-                'description' => 'Tous les accessoires nécessaires pour compléter votre expérience informatique.'
-            ],
-            [
-                'libelle' => 'Composants PC',
-                'description' => 'Cartes graphiques, processeurs, mémoires et autres composants essentiels pour monter ou améliorer votre PC.'
-            ],
-            [
-                'libelle' => 'Périphériques de Jeu',
-                'description' => 'Claviers, souris, casques et autres périphériques conçus pour les gamers.'
-            ],
-            [
-                'libelle' => 'Télévisions et Moniteurs',
-                'description' => 'Écrans haute définition pour une expérience visuelle exceptionnelle.'
-            ],
-            [
-                'libelle' => 'Appareils Photo et Caméras',
-                'description' => 'Appareils photo et caméras de haute qualité pour capturer tous vos moments importants.'
-            ],
-            [
-                'libelle' => 'Logiciels',
-                'description' => 'Systèmes d\'exploitation, applications et jeux pour tous vos besoins informatiques.'
-            ],
-            [
-                'libelle' => 'Domotique et Objets Connectés',
-                'description' => 'Les dernières innovations en matière de domotique et d\'objets connectés pour une maison intelligente.'
-            ],
-        ];
+          [
+    'libelle' => 'Pommes',
+    'description' => 'Des pommes fraîches et croquantes pour toutes vos envies de fruits.'
+],
+[
+    'libelle' => 'Bananes',
+    'description' => 'Les bananes, riches en potassium et idéales pour une collation rapide.'
+],
+[
+    'libelle' => 'Tomates',
+    'description' => 'Des tomates juteuses pour agrémenter vos salades et plats cuisinés.'
+],
+[
+    'libelle' => 'Carottes',
+    'description' => 'Des carottes croquantes, riches en vitamines, pour toutes vos recettes.'
+],
+[
+    'libelle' => 'Pommes de Terre',
+    'description' => 'Pommes de terre polyvalentes pour la cuisson, la friture et la purée.'
+],
+[
+    'libelle' => 'Épinards',
+    'description' => 'Épinards frais pour une touche verte et nutritive dans vos repas.'
+],
+[
+    'libelle' => 'Oranges',
+    'description' => 'Oranges juteuses et pleines de vitamine C pour un boost d\'énergie.'
+],
+[
+    'libelle' => 'Fraises',
+    'description' => 'Fraises sucrées et savoureuses pour vos desserts et snacks.'
+],
+[
+    'libelle' => 'Concombres',
+    'description' => 'Concombres frais et croquants pour vos salades et encas.'
+],
+[
+    'libelle' => 'Courgettes',
+    'description' => 'Courgettes polyvalentes pour les sautés, gratins et plats mijotés.'
+],
+[
+    'libelle' => 'Avocats',
+    'description' => 'Avocats crémeux, parfaits pour les salades, tartines et guacamoles.'
+],
+[
+    'libelle' => 'Ananas',
+    'description' => 'Ananas sucrés et juteux pour une touche exotique à vos plats.'
+]
+];
+
+        
 
         foreach ($categories as $categorie) {
             DB::table('categories')->insert([
