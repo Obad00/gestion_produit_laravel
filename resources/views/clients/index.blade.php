@@ -173,19 +173,19 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://img.freepik.com/free-photo/high-angle-photographer-holding-camera_23-2150264510.jpg?t=st=1717959512~exp=1717963112~hmac=4e902de77f0400f08f4d14846fd93010a1d6b76ec06cab73e387815de19271e3&w=996" 
+                <img src="https://img.freepik.com/premium-photo/composition-with-vegetables-fruits-wicker-basket-isolated_135427-239.jpg?w=1060" 
                 class="d-block w-100" alt="Image 1">
             </div>
             <div class="carousel-item">
-                <img src="https://img.freepik.com/premium-psd/smartphone-laptop-dark-mockup_117023-2975.jpg?w=1060" 
+                <img src="https://img.freepik.com/free-photo/top-view-raw-bananas-arrangement_23-2150764280.jpg?t=st=1718022536~exp=1718026136~hmac=7d1b4b05d8d76dc04e62034d4fdc405afbd7522816c5004251e4fcc4006d4b40&w=996" 
                 class="d-block w-100" alt="Image 2">
             </div>
             <div class="carousel-item">
-                <img src="https://img.freepik.com/premium-psd/tablet-pro-mockup_216266-453.jpg"
+                <img src="https://img.freepik.com/premium-photo/group-fresh-vegetables-fruits_135427-235.jpg?w=1060"
                  class="d-block w-100" alt="Image 3">
             </div>
             <div class="carousel-item">
-                <img src="https://img.freepik.com/free-photo/laptop-mobile-phone-table-with-sand-dunes-3d-rendering_1142-54507.jpg?t=st=1717960995~exp=1717964595~hmac=f124aefcadb1c1a2198bc3f3e9ef744556a08514d25179099bc6c8a5262595b0&w=996"
+                <img src="https://img.freepik.com/free-photo/fresh-raw-bananas-arrangement_23-2150764304.jpg?t=st=1718022604~exp=1718026204~hmac=4fee66cad839f80578c9823826297be93cd9f5964d3d1670c609ec9eaa39be8a&w=996"
                  class="d-block w-100" alt="Image 3">
             </div>
         </div>
