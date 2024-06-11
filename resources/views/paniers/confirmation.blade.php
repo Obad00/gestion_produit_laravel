@@ -37,6 +37,6 @@
             </div>
         @endif
         <p>Merci pour votre commande! Vous recevrez bientôt une confirmation par e-mail.</p>
-        <a href="/" class="btn btn-primary">Continuer vos achats</a>
+        <a href="{{ route('clients.dashboard') }}" class="btn btn-primary">Continuer vos achats</a>
     </div>
 

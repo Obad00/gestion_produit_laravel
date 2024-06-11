@@ -7,6 +7,7 @@ use App\Http\Controllers\PanierController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
 
 Route::get('/', [ProduitController::class ,'vue_clients']);
 
@@ -72,6 +73,9 @@ Route::post('/ajouter-au-panier/{produit}', [PanierController::class, 'ajouterAu
 //Cella va nous permettre d'acceder à notre panier
 Route::get('/paniers', [PanierController::class, 'afficherPanier'])->name('paniers.index');
 
+Route::get('/panier', [PanierController::class, 'index'])->name('panier.index');
+
+
 //Cette juste pour le traitement de la commande
 Route::post('/commande', [CommandeController::class, 'store'])->name('commande.store');
 
@@ -84,9 +88,24 @@ Route::get('/confirmation', function () {
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login'); 
 Route::post('/login', [AuthController::class, 'dologin']); 
 
+// Afficher le formulaire d'inscription
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('auth.register'); 
+
+// Traitement du formulaire d'inscription
+Route::post('/register', [AuthController::class, 'register']); 
+
 //Cette route permet à l'utilisateur de se deconnecter
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/client', [ClientController::class, 'dashboard'])->name('clients.dashboard');
 
-Route::get('/recherche-produits', 'ProduitController@rechercherProduits')->name('recherche.produits');
+Route::get('/client/commandes', [ClientController::class, 'commandes'])->name('clients.commandes');
+
+
+Route::get('/recherche-produits', [ProduitController::class, 'rechercherProduits'])->name('recherche.produits');
+
+
+
+Route::get('/clients', [ClientController::class, 'listeClients'])->name('clients.liste');
+
 

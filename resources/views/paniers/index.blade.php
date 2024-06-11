@@ -1,47 +1,51 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contenu du Panier</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-<style>
-    .container {
-        max-width: 600px;
-        margin: auto;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
 
-    h1 {
-        text-align: center;
-        margin-bottom: 30px;
-        color: #333;
-    }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
+        li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
 
-    li {
-        margin-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 10px;
-    }
+        label {
+            font-weight: bold;
+        }
 
-    label {
-        font-weight: bold;
-    }
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .btn-primary {
-        width: 100%;
-    }
-</style>
-<br><br><br>
+        .btn-primary {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
     <div class="container">
         <div>
-            <a href="/" class="btn btn-link">Retour</a>
+            <a href="{{ route('clients.dashboard') }}" class="btn btn-link">Retour</a>
         </div>
         
         <h1>Contenu du Panier</h1>
@@ -60,7 +64,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="nom_client">Nom:</label>
-                    <input type="text" name="nom_client" id="nom_client" class="form-control" required>
+                    <input type="text" name="nom_client" id="nom_client" class="form-control" value="{{ Auth::user()->name }}" required>
                 </div>
                 <div class="form-group">
                     <label for="adresse_client">Adresse:</label>
@@ -76,4 +80,5 @@
             <p>Votre panier est vide.</p>
         @endif
     </div>
-
+</body>
+</html>

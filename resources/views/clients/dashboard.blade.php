@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diwan Tech-Liste des Produits</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Client Dashboard</title>
     <style>
         /* Style pour la barre de navigation */
         .navbar {
@@ -141,7 +140,8 @@
 
     </style>
 </head>
-<body>
+ 
+ <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">Kane & Frères</a>
@@ -158,6 +158,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('auth.login') }}">Connexion</a>
                     </li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit">Déconnexion</button>
+                    </form>
                 </ul>
             </div>
         </div>
@@ -198,9 +202,10 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-
     <!-- Description de la plateforme -->
     <div class="container">
+        <h1>Bienvenue, {{ Auth::user()->name }}</h1>
+
         <div class="description">
             <h2>Bienvenue sur notre plateforme</h2>
             <p>Découvrez une sélection unique de produits de qualité. Ajoutez vos articles préférés à votre panier et passez commande en toute simplicité.</p>
@@ -303,5 +308,4 @@
             }, 5000); 
         });
     </script>
-</body>
-</html>
+</body></html>

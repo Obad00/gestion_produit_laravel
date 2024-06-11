@@ -12,14 +12,6 @@ class ProduitController extends Controller
 
     public function  vue_clients(){
 
-          //Cette ligne de code nous a permis de créer un utilisateur
-
-        // User::create([
-        //     'name' => 'Adama Dabo',
-        //     'email' => 'Adama@gmail.com',
-        //     'password' => Hash::make('0000')
-        // ]); 
-
         $produits= Produit::all();
         return view('/clients/index', compact('produits'));
     }

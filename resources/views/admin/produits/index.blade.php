@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,7 +101,7 @@
                 <a href="{{ url('produits') }}" class="list-group-item list-group-item-action bg-dark text-white">Produits</a>
                 <a href="{{ url('categories') }}" class="list-group-item list-group-item-action bg-dark text-white">Catégories</a>
                 <a href="{{ route('commandes.index') }}" class="list-group-item list-group-item-action bg-dark text-white">Commandes</a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Clients</a>
+                <a href="{{ route('clients.liste') }}" class="list-group-item list-group-item-action bg-dark text-white">Clients</a>
             </div>
         </div>
         <div id="page-content-wrapper">

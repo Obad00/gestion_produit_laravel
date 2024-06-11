@@ -40,7 +40,7 @@
 <br>
 <br>
 <div class="card p-4">
-    <h1 class="text-center mb-4">Se connecter</h1>
+    <h1 class="text-center mb-4">Connexion</h1>
     <form action="{{ route('auth.login') }}" method="post" class="vstack gap-3">
         @csrf
         <div class="form-group mb-3">
@@ -59,7 +59,9 @@
             @enderror
         </div>
         <button class="btn btn-primary w-100">Se connecter</button>
+       
     </form>
+    <a href="{{ route('auth.register') }}" class="btn btn-primary w-100">S'inscrire</a>
     <div class="text-center mt-3">
         <a href="/" class="btn btn-link">Retour</a>
     </div>
