@@ -155,9 +155,9 @@
                             <i class="fa fa-shopping-cart"></i> Panier
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('auth.login') }}">Connexion</a>
-                    </li>
+                    </li> --}}
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit">Déconnexion</button>
