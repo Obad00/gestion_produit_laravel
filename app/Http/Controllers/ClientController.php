@@ -7,16 +7,16 @@ use App\Models\Produit;
 use App\Models\Commande;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class ClientController extends Controller
 {
-
-    public function listeClients()
+public function listeClients()
 {
-    // Récupérer tous les utilisateurs (clients) depuis la base de données
-    $clients = DB::table('users')->get();
+    // Récupérer les utilisateurs ayant le rôle "client"
+    $clients = User::where('role', 'client')->get();
 
-    // Passer les utilisateurs à la vue et l'afficher
+    // Passer les utilisateurs filtrés à la vue
     return view('clients.liste', compact('clients'));
 }
     public function dashboard()
