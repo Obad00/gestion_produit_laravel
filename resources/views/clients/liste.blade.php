@@ -8,6 +8,10 @@
 </head>
 <body>
     <div class="container">
+        <br>
+        <div>
+            <a href="{{ route('produits.index') }}" class="btn btn-link">Retour</a>
+        </div>
         <h1 class="my-4">Liste des Clients</h1>
         <div class="table-responsive">
             <table class="table table-bordered">

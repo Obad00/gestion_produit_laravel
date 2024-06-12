@@ -57,7 +57,7 @@
                             <label for="role">Rôle</label>
                             <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required>
                                 <option value="client">Client</option>
-                                <option value="admin">Administrateur</option>
+                                {{-- <option value="admin">Administrateur</option> --}}
                             </select>
                             @error('role')
                                 <span class="invalid-feedback" role="alert">
