@@ -85,14 +85,14 @@
                 </div>
                 <div class="form-group">
                     <label for="adresse_client">Adresse:</label>
-                    <input type="text" name="adresse_client" id="adresse_client" class="form-control" value="{{ old('adresse_client') }}" >
+                    <input type="text" name="adresse_client" id="adresse_client" class="form-control" value="{{ old('adresse_client') }}" required>
                     @error('adresse_client')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="telephone_client">Téléphone:</label>
-                    <input type="text" name="telephone_client" id="telephone_client" class="form-control" value="{{ old('telephone_client') }}" >
+                    <input type="text" name="telephone_client" id="telephone_client" class="form-control" value="{{ old('telephone_client') }}" required>
                     @error('telephone_client')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
