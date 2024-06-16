@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Http\Middleware\EnsureTokenIsValid;
+use App\Http\Middleware\EnsureRoleAdmin;
 
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         
         //Là je crée une alias pour mon middleware
         $middleware->alias([
-            'subscribed' => EnsureTokenIsValid::class
+            'admin' => EnsureRoleAdmin::class
         ]);
         
     })

@@ -12,6 +12,20 @@ class CommandeController extends Controller
 {
     public function store(Request $request)
     {
+        // Valider les données du formulaire
+        $request->validate([
+            'nom_client' => 'required|string|max:255',
+            'adresse_client' => 'required|string|max:255',
+            'telephone_client' => 'required|string|max:20',
+        ], [
+            'nom_client.required' => 'Le nom du client est requis.',
+            'adresse_client.required' => 'L\'adresse du client est requise.',
+            'telephone_client.required' => 'Le numéro de téléphone du client est requis.',
+        ]);
+    
+        // Si la validation échoue, Laravel redirigera automatiquement avec les erreurs
+    
+        // Continuer le traitement si la validation passe
         // Vérifier si l'utilisateur est connecté
         if (!Auth::check()) {
             return redirect()->route('auth.login')->with('status', 'Vous devez être connecté pour passer une commande.');
@@ -45,18 +59,20 @@ class CommandeController extends Controller
         $commande->montant = $montantTotal;
         $commande->user_id = $user->id; // Assigner l'ID de l'utilisateur
         $commande->save();
-
+    
         // Associer les produits sélectionnés à cette commande
         foreach ($panier as $idProduit => $quantite) {
             $commande->produits()->attach($idProduit, ['quantite' => $quantite]);
         }
-
-        // Vider le panier
-        session()->forget('panier');
-
+    
+        // Vider le panier de l'utilisateur connecté
+        session()->forget('panier_' . $user->id);
+    
         // Rediriger avec un message de succès
         return redirect()->route('paniers.confirmation')->with('success', 'Votre commande a été passée avec succès!');
     }
+    
+    
 
     public function index()
     {

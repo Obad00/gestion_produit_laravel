@@ -31,12 +31,12 @@ class PanierController extends Controller
     
 
     public function ajouterAuPanier(Request $request, Produit $produit)
-    {
+    { 
         // Récupérer l'utilisateur connecté, s'il y en a un
         $user = Auth::user();
         
         // Générer une clé de session unique pour le panier
-        $panierKey = $user ? 'panier_' . $user->id : 'panier_anon';
+        $panierKey = $user ? 'panier_' . $user->id : 'panier_temporaire';
         
         // Récupérer le panier actuel de la session ou créer un nouveau panier
         $panier = session()->get($panierKey, []);

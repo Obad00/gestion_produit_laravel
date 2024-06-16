@@ -7,13 +7,37 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
     public function login()
     {
+        // Sauvegarder le panier actuel dans la session si non connecté
+        if (!Auth::check()) {
+            session()->put('panier_temporaire', session()->get('panier_anon', []));
+        }
         return view('auth.login');
     }
+
+    private function mergePanierTemporaire($user)
+{
+    $panierTemporaire = session()->get('panier_temporaire', []);
+    session()->forget('panier_temporaire');
+
+    $panierUtilisateur = session()->get('panier_' . $user->id, []);
+
+    foreach ($panierTemporaire as $idProduit => $quantite) {
+        if (isset($panierUtilisateur[$idProduit])) {
+            $panierUtilisateur[$idProduit] += $quantite; // Ajouter à la quantité existante
+        } else {
+            $panierUtilisateur[$idProduit] = $quantite; // Nouveau produit dans le panier utilisateur
+        }
+    }
+
+    session()->put('panier_' . $user->id, $panierUtilisateur);
+}
+    
 
     public function dologin(LoginRequest $request)
     {
@@ -24,6 +48,9 @@ class AuthController extends Controller
 
             $user = Auth::user();
             $role = $user->role;
+
+            // Fusionner le panier temporaire avec celui de l'utilisateur connecté
+            $this->mergePanierTemporaire($user);
 
             switch ($role) {
                 case User::ROLE_ADMIN:

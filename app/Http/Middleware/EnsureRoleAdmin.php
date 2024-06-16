@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class EnsureTokenIsValid
+class EnsureRoleAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,9 @@ class EnsureTokenIsValid
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
-            return redirect()->route('auth.login')->with('error', 'Vous devez être connecté pour accéder à cette page.');
+        // Vérifier si l'utilisateur est authentifié et a le rôle administrateur
+        if (!auth()->check() || !auth()->user()->isAdmin()) {
+            abort(403, 'Accès non autorisé.'); // Ou rediriger vers une autre page
         }
 
         return $next($request);

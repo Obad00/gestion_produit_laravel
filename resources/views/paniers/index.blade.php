@@ -40,6 +40,10 @@
         .btn-primary {
             width: 100%;
         }
+
+        .alert-danger {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -49,6 +53,16 @@
         </div>
         
         <h1>Contenu du Panier</h1>
+
+        {{-- @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif --}}
 
         @if (count($panier) > 0)
             <ul>
@@ -64,15 +78,24 @@
                 @csrf
                 <div class="form-group">
                     <label for="nom_client">Nom:</label>
-                    <input type="text" name="nom_client" id="nom_client" class="form-control" value="{{ Auth::user()->name }}" required>
+                    <input type="text" name="nom_client" id="nom_client" class="form-control" value="{{ old('nom_client', Auth::user()->name) }}" required>
+                    @error('nom_client')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="adresse_client">Adresse:</label>
-                    <input type="text" name="adresse_client" id="adresse_client" class="form-control" required>
+                    <input type="text" name="adresse_client" id="adresse_client" class="form-control" value="{{ old('adresse_client') }}" >
+                    @error('adresse_client')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="telephone_client">Téléphone:</label>
-                    <input type="text" name="telephone_client" id="telephone_client" class="form-control" required>
+                    <input type="text" name="telephone_client" id="telephone_client" class="form-control" value="{{ old('telephone_client') }}" >
+                    @error('telephone_client')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Passer la commande</button>
             </form>

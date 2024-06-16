@@ -15,7 +15,7 @@
 
                         <div class="form-group">
                             <label for="name">Nom</label>
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" >
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -25,7 +25,7 @@
 
                         <div class="form-group">
                             <label for="email">Adresse email</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" >
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -35,7 +35,7 @@
 
                         <div class="form-group">
                             <label for="password">Mot de passe</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" >
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -45,7 +45,7 @@
 
                         <div class="form-group">
                             <label for="password_confirmation">Confirmation du mot de passe</label>
-                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
+                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" >
                             @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
 
                         <div class="form-group">
                             <label for="role">Rôle</label>
-                            <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required>
+                            <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" >
                                 <option value="client">Client</option>
                                 {{-- <option value="admin">Administrateur</option> --}}
                             </select>

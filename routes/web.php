@@ -5,58 +5,59 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\CommandeController;
-use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
 
 Route::get('/', [ProduitController::class ,'vue_clients']);
 
-Route::middleware([EnsureTokenIsValid::class])->group(function () {
+Route::middleware(['admin'])->group(function () {
 
-    //Cette route c'est pour permettre d'acceder à l'ensemble des produits
-Route::get('produits', [ProduitController::class, 'index'])->name('produits.index');
+    // Route pour afficher l'ensemble des produits
+    Route::get('produits', [ProduitController::class, 'index'])->name('produits.index');
 
-//Affichage details produits
-Route::get('produits/{id}', [ProduitController::class, 'show'])->name('produits.show'); 
+    // Route pour afficher les détails d'un produit
+    Route::get('produits/{id}', [ProduitController::class, 'show'])->name('produits.show');
 
+    // Route pour accéder au formulaire d'ajout d'un produit
+    Route::get('admin/produits/create', [ProduitController::class, 'create'])->name('produits.create');
+    // Route pour enregistrer un nouveau produit
+    Route::post('produits', [ProduitController::class, 'store']);
 
-//C'est la route qui mène vers le formulaire d'ajout d'un produit
-Route::get('admin/produits/create', [ProduitController::class, 'create'])->name('produits.create');
-Route::post('produits', [ProduitController::class, 'store']);
+    // Routes pour afficher et modifier un produit
+    Route::get('produits/{id}/edit', [ProduitController::class, 'edit']);
+    Route::put('produits/{id}', [ProduitController::class, 'update'])->name('produits.update');
 
-//les routes pour afficher et modifier un produit
-Route::get('produits/{id}/edit', [ProduitController::class, 'edit']);
-Route::put('produits/{id}', [ProduitController::class, 'update'])->name('produits.update');
+    // Route pour supprimer un produit
+    Route::delete('produits/{id}', [ProduitController::class, 'destroy'])->name('produits.destroy');
 
-//Cette route c'est pour la suppression d'un produit
-Route::delete('produits/{id}', [ProduitController::class, 'destroy'])->name('produits.destroy');
+    // Route pour afficher la liste des catégories
+    Route::get('categories', [CategorieController::class, 'index'])->name('categories.index');
 
-// Route pour afficher la liste des catégories
-Route::get('categories', [CategorieController::class, 'index'])->name('categories.index');
+    // Route pour afficher le formulaire de création d'une nouvelle catégorie
+    Route::get('categories/create', [CategorieController::class, 'create'])->name('categories.create');
 
+    // Route pour enregistrer une nouvelle catégorie
+    Route::post('categories', [CategorieController::class, 'store'])->name('categories.store');
 
-// Route pour afficher le formulaire de création d'une nouvelle catégorie
-Route::get('categories/create', [CategorieController::class, 'create'])->name('categories.create');
+    // Route pour afficher le formulaire d'édition d'une catégorie
+    Route::get('categories/{categorie}/edit', [CategorieController::class, 'edit'])->name('categories.edit');
 
-// Route pour enregistrer une nouvelle catégorie
-Route::post('categories', [CategorieController::class, 'store'])->name('categories.store');
+    // Route pour mettre à jour une catégorie existante
+    Route::put('categories/{categorie}', [CategorieController::class, 'update'])->name('categories.update');
 
-// Route pour afficher le formulaire d'édition d'une catégorie
-Route::get('categories/{categorie}/edit', [CategorieController::class, 'edit'])->name('categories.edit');
+    // Route pour supprimer une catégorie
+    Route::delete('categories/{categorie}', [CategorieController::class, 'destroy'])->name('categories.destroy');
 
-// Route pour mettre à jour une catégorie existante
-Route::put('categories/{categorie}', [CategorieController::class, 'update'])->name('categories.update');
+    // Route pour afficher les détails d'une catégorie
+    Route::get('categories/{categorie}', [CategorieController::class, 'show'])->name('categories.show');
 
-// Route pour supprimer une catégorie
-Route::delete('categories/{categorie}', [CategorieController::class, 'destroy'])->name('categories.destroy');
+    // Route pour afficher l'ensemble des commandes (accès admin)
+    Route::get('admin/commandes', [CommandeController::class, 'index'])->name('commandes.index');
 
-//Cette va permettre à l'administrateur de voir l'ensemble des commanes qui ont été faites
-Route::get('admin/commandes', [CommandeController::class, 'index'])->name('commandes.index');
-
-
+    // Route pour afficher la liste des clients (accès admin)
+    Route::get('/clients', [ClientController::class, 'listeClients'])->name('clients.liste');
 
 });
-
 
 
 
@@ -64,8 +65,6 @@ Route::get('admin/commandes', [CommandeController::class, 'index'])->name('comma
 Route::get('clients/{id}', [ProduitController::class, 'showclient'])->name('clients.show'); 
 
 
-// Route pour afficher les détails d'une catégorie
-Route::get('categories/{categorie}', [CategorieController::class, 'show'])->name('categories.show');
 
 //Les route por nous permettre que le client puisse ajouter d'abord au panier
 Route::post('/ajouter-au-panier/{produit}', [PanierController::class, 'ajouterAuPanier'])->name('ajouter-au-panier');
@@ -106,6 +105,5 @@ Route::get('/recherche-produits', [ProduitController::class, 'rechercherProduits
 
 
 
-Route::get('/clients', [ClientController::class, 'listeClients'])->name('clients.liste');
 
 
