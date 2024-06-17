@@ -28,10 +28,9 @@ class PanierController extends Controller
         // Retourner la vue avec les données du panier
         return view('paniers.index', compact('panier', 'produits'));
     }
-    
 
     public function ajouterAuPanier(Request $request, Produit $produit)
-    { 
+    {
         // Récupérer l'utilisateur connecté, s'il y en a un
         $user = Auth::user();
         
@@ -53,5 +52,50 @@ class PanierController extends Controller
         
         return redirect()->back()->with('status', 'Produit ajouté au panier avec succès');
     }
-    
+
+    public function supprimerDuPanier($id)
+    {
+        $user = Auth::user();
+        $panierKey = $user ? 'panier_' . $user->id : 'panier_temporaire';
+        $panier = session()->get($panierKey, []);
+
+        if (isset($panier[$id])) {
+            unset($panier[$id]);
+        }
+
+        session()->put($panierKey, $panier);
+        return redirect()->back()->with('status', 'Produit supprimé du panier avec succès');
+    }
+
+    public function incrementerQuantite($id)
+    {
+        $user = Auth::user();
+        $panierKey = $user ? 'panier_' . $user->id : 'panier_temporaire';
+        $panier = session()->get($panierKey, []);
+
+        if (isset($panier[$id])) {
+            $panier[$id]++;
+        }
+
+        session()->put($panierKey, $panier);
+        return redirect()->back()->with('status', 'Quantité augmentée avec succès');
+    }
+
+    public function decrementerQuantite($id)
+    {
+        $user = Auth::user();
+        $panierKey = $user ? 'panier_' . $user->id : 'panier_temporaire';
+        $panier = session()->get($panierKey, []);
+
+        if (isset($panier[$id])) {
+            if ($panier[$id] > 1) {
+                $panier[$id]--;
+            } else {
+                unset($panier[$id]);
+            }
+        }
+
+        session()->put($panierKey, $panier);
+        return redirect()->back()->with('status', 'Quantité diminuée avec succès');
+    }
 }

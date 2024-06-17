@@ -7,7 +7,6 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -15,29 +14,35 @@ class AuthController extends Controller
     {
         // Sauvegarder le panier actuel dans la session si non connecté
         if (!Auth::check()) {
-            session()->put('panier_temporaire', session()->get('panier_anon', []));
+            session()->put('panier_temporaire', session()->get('panier_temporaire', []));
         }
         return view('auth.login');
     }
 
     private function mergePanierTemporaire($user)
-{
-    $panierTemporaire = session()->get('panier_temporaire', []);
-    session()->forget('panier_temporaire');
-
-    $panierUtilisateur = session()->get('panier_' . $user->id, []);
-
-    foreach ($panierTemporaire as $idProduit => $quantite) {
-        if (isset($panierUtilisateur[$idProduit])) {
-            $panierUtilisateur[$idProduit] += $quantite; // Ajouter à la quantité existante
-        } else {
-            $panierUtilisateur[$idProduit] = $quantite; // Nouveau produit dans le panier utilisateur
+    {
+        // Récupérer le panier temporaire de la session
+        $panierTemporaire = session()->get('panier_temporaire', []);
+        if (empty($panierTemporaire)) {
+            return;
         }
-    }
 
-    session()->put('panier_' . $user->id, $panierUtilisateur);
-}
-    
+        // Récupérer le panier de l'utilisateur
+        $panierUtilisateur = session()->get('panier_'. $user->id, []);
+
+        // Fusionner les deux paniers
+        foreach ($panierTemporaire as $idProduit => $quantite) {
+            if (isset($panierUtilisateur[$idProduit])) {
+                $panierUtilisateur[$idProduit] += $quantite;
+            } else {
+                $panierUtilisateur[$idProduit] = $quantite;
+            }
+        }
+
+        // Mettre à jour le panier de l'utilisateur dans la session
+        session()->put('panier_'. $user->id, $panierUtilisateur);
+        session()->forget('panier_temporaire');
+    }
 
     public function dologin(LoginRequest $request)
     {

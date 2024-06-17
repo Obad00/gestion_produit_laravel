@@ -105,5 +105,7 @@ Route::get('/recherche-produits', [ProduitController::class, 'rechercherProduits
 
 
 
+Route::delete('/panier/supprimer/{id}', [PanierController::class, 'supprimerDuPanier'])->name('panier.supprimer');
 
-
+Route::post('/panier/incrementer/{id}', [PanierController::class, 'incrementerQuantite'])->name('panier.incrementer');
+Route::post('/panier/decrementer/{id}', [PanierController::class, 'decrementerQuantite'])->name('panier.decrementer');
